@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/wu2018
     steps:
       - checkout
-      - run: php --ini
+      - run: phpunit
 
 
 # # PHP CircleCI 2.0 configuration file
