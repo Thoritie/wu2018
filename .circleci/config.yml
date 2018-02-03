@@ -7,9 +7,9 @@ jobs:
     working_directory: ~/wu2018
     steps:
       - checkout
-      - run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-      - run : composer install
-      - run: phpunit
+      - run: curl -sS https://getcomposer.org/installer | php -- --filename=composer
+      - run: ./composer install
+      - run: ./vendor/bin/phpunit
       
 
 
