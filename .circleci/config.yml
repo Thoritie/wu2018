@@ -15,7 +15,7 @@ jobs:
       enabled: true
     working_directory: ~/wu2018
     steps:
-      - run: ssh ubuntu@http://ec2-13-250-63-113.ap-southeast-1.compute.amazonaws.com "sh deploy.sh"
+      - run: ssh ubuntu@ec2-13-250-63-113.ap-southeast-1.compute.amazonaws.com "sh deploy.sh"
 workflows:
   version: 2
   build-deploy:
