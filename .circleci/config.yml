@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  build-job:
     docker:
       - image: circleci/php:7.1.5-browsers
     working_directory: ~/wu2018
@@ -10,43 +10,17 @@ jobs:
       - run: curl -sS https://getcomposer.org/installer | php -- --filename=composer
       - run: ./composer install
       - run: ./vendor/bin/phpunit
-      
-
-
-# # PHP CircleCI 2.0 configuration file
-# #
-# # Check https://circleci.com/docs/2.0/language-php/ for more details
-# #
-# version: 2
-# jobs:
-#   build:
-#     docker:
-#       # specify the version you desire here
-#       - image: circleci/php:7.1.5-browsers
-      
-#       # Specify service dependencies here if necessary
-#       # CircleCI maintains a library of pre-built images
-#       # documented at https://circleci.com/docs/2.0/circleci-images/
-#       # - image: circleci/mysql:9.4
-
-#     working_directory: ~/repo
-
-#     steps:
-#       - checkout
-
-#       # Download and cache dependencies
-#       - restore_cache:
-#           keys:
-#           - v1-dependencies-{{ checksum "composer.json" }}
-#           # fallback to using the latest cache if no exact match is found
-#           - v1-dependencies-
-
-#       - run: composer install -n --prefer-dist
-
-#       - save_cache:
-#           paths:
-#             - ./vendor
-#           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-#       # run tests!
-#       - run: phpunit
+  deploy-job:
+    machine:
+      enabled: true
+    working_directory: ~/wu2018
+    steps:
+      - run: ssh ubuntu@http://ec2-13-250-63-113.ap-southeast-1.compute.amazonaws.com "sh deploy.sh"
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-job
+      - deploy-job:
+          requires:
+            - build-job
