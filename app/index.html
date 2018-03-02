@@ -6,6 +6,9 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"/>
 <style>
+    .back{
+        background-image:url("https://hotel-agora-paris.com/wp-content/uploads/2013/04/hotel-agora-paris3.jpg") !important;  
+    }
 .spacer-top {
     margin-top: 1em;
 }
@@ -48,8 +51,9 @@
 }
 </style>
 </head>
-<body>
-<section class="hero is-primary is-medium">
+<body class="back">
+
+<section class="hero is-medium">
   <div class="hero-body">
     <div class="container">
         <h1 class="title is-1">
@@ -63,6 +67,7 @@
             <a class="button is-danger" onclick="javascript:transform()">Analyze!</a>
         </div>
 
+      
         <div class="columns spacer-top">
             <div class="column">
                 <div id="gender">
@@ -88,6 +93,7 @@
     </div>
   </div>
 </section>
+
 
 <script>
     async function transform() {
